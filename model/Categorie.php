@@ -5,7 +5,7 @@ class Categorie
 		public $ID = null;
 		public $nom;
 		public $photoss = array();
-                
+                sdfghjikop
                 
                 static function get($id)
                 {
