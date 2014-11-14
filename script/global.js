@@ -493,7 +493,26 @@ function editPhotoValid()
 
 function initDatatable()
 {
-     $('.datatable').DataTable();
+    
+    
+    
+     $('.datatable').DataTable({
+         "language": {
+            "lengthMenu":  GetText("displayLengthDatatable"), //"Display _MENU_ records per page",
+            "zeroRecords":  GetText("zeroRecord"),
+            "info":  GetText("infoPageDatatable"),//"Showing page _PAGE_ of _PAGES_",
+            "infoEmpty":  GetText("infoEmpty"),
+            "infoFiltered": GetText("infoFiltered"), //"(filtered from _MAX_ total records)"
+            "paginate": {
+                "previous":  GetText("previous"),
+                "next" :  GetText("next")
+            },
+          
+            
+            "search" : GetText("search")
+            
+        }
+     });
      
      $(".traduction").on("click",function()
      {
@@ -520,7 +539,7 @@ function saveTraduction(elt)
      $.ajax({
                 url: "../vues/traductionManager/manageTraduction.php",
                 dataType: 'text',
-                data: {key : key, text : text} ,                         
+                data: {key : key, text : text,action : "save"} ,                         
                 type: 'post',
                 success: function(data){
                     
@@ -536,6 +555,36 @@ function saveTraduction(elt)
                 }
      });
     
+}
+
+
+
+function GetText(key)
+{
+    
+    var text = "";
+    $.ajax({
+                url: "../vues/traductionManager/manageTraduction.php",
+                dataType: 'text',
+                data: {key : key,action : "getText"} ,                         
+                type: 'post',
+                async : false,
+                success: function(data){
+                    
+                  
+                    var result = JSON.parse(data);
+                    if(result["ok"])
+                    {
+                       
+                       text =  result["text"];
+                    }
+                    else
+                         alert(result["error"]); 
+                  
+                }
+     });
+     
+     return text;
 }
 
 
