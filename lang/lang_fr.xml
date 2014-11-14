@@ -9,6 +9,14 @@
         <text key="menu3">menu2</text>
         <text key="menu4">menu3</text>
         <text key="menu5">menu4</text>
-        <text key="menu6">menu5</text>
+        <text key="menu6">menu5</text> 
+        <text key="displayLengthDatatable">Afficher _MENU_ ligne par page</text>   
+        <text key="zeroRecord">Aucun resultat trouvé</text>
+        <text key="infoPageDatatable">Affichage de la page _PAGE_ sur _PAGES_</text>
+        <text key="infoEmpty">Aucun resultat disponible</text>
+        <text key="infoFiltered">(filtré sur _MAX_ resultats)</text>
+        <text key="previous">Précédent</text>
+        <text key="next">Suivant</text>
+        <text key="search">Rechercher</text>
     </categories>
 </root>

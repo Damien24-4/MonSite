@@ -10,5 +10,14 @@
         <text key="menu4">menu3</text>
         <text key="menu5">menu4</text>
         <text key="menu6">menu5</text>
+        <text key="displayLengthDatatable">Display _MENU_ records per page</text>   
+        <text key="zeroRecord">No result found, sorry</text>
+        <text key="infoPageDatatable">Showing page _PAGE_ of _PAGES_</text>
+        <text key="infoEmpty">No records available</text>
+        <text key="infoFiltered">(filtered from _MAX_ total records)</text>
+        <text key="previous">Previous</text>
+        <text key="next">Next</text>
+        <text key="search">Search</text>
+
     </categories>
 </root>
