@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+    <categories key="global">
+        <text key="global">hola</text>
+        <text key="test">test</text>
+        <text key="test2">tagada</text>
+        <text key="menu1">coucou test</text>
+        <text key="menu2">menu1</text>
+        <text key="menu3">menu2</text>
+        <text key="menu4">menu3</text>
+        <text key="menu5">menu4</text>
+        <text key="menu6">menu5</text>
+    </categories>
+</root>

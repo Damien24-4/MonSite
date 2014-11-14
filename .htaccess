@@ -1,0 +1,9 @@
+Options +FollowSymlinks
+RewriteEngine On
+
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_URI} !\.(png|gif|jpg)$
+RewriteRule	^(.[^/]*)/(.*[^\.php)])$	Controller.php?key=$2&lang=$1 [QSA]
+#RewriteRule	^(.*)$	Controller.php?key=$1&lang=fr [QSA]
