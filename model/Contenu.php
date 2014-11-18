@@ -13,7 +13,15 @@
         
         public static function loadByCateg($id)
         {
-            $this->mCategorie = BDD::getInstance()->prepareQuery($query);
+            $this->mCategorie = Categorie::get($id);
+                    
+            $query = 'SELECT co.ID_contenu, co.contenu, co.date FROM categorie_contenu cc, contenu co WHERE cc.ID_catgorie=:idCateg AND co.ID_contenu = cc.ID_contenu';
+            BDD::getInstance()->prepareQuery($query);
+            $content = BDD::getInstance()->executeQuery(array(':idCateg' => $id));
+            
+            $this->mIdContenu = $content['ID_contenu'];
+            $this->mContenu = $content['contenu'];
+            $this->mDate = new DateTime($content['date']);
         }
         
         public function save()
