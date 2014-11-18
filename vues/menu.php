@@ -8,7 +8,7 @@
                     <li><?php echo getTrad("menu2") ?></li>
                 </a>
                  <div class="menuSeparator"></div> 
-                <a  href="Activite" class="menu3">
+                <a  href="Activites" class="menu3">
                     <li><?php echo getTrad("menu3") ?></li>
                 </a>
                 <div class="menuSeparator"></div> 
@@ -20,10 +20,9 @@
                 if(IsAdmin()):
                 ?>
                     <div class="menuSeparator"></div> 
-                <a  href="Traductions" class="menu5">
-                    <li><?php echo getTrad("menu5") ?></li>
-                </a>
-                    
+                    <a  href="Traductions" class="menu5">
+                        <li><?php echo getTrad("menu5") ?></li>
+                    </a>
                 <?php    
                 endif;
                 ?>

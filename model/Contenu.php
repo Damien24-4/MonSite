@@ -11,13 +11,13 @@
         {
         }
         
-        public static function loadByCateg($id)
+        public static function loadByCateg($key)
         {
-            $this->mCategorie = Categorie::get($id);
+            $this->mCategorie = Categorie::get($key);
                     
             $query = 'SELECT co.ID_contenu, co.contenu, co.date FROM categorie_contenu cc, contenu co WHERE cc.ID_catgorie=:idCateg AND co.ID_contenu = cc.ID_contenu';
             BDD::getInstance()->prepareQuery($query);
-            $content = BDD::getInstance()->executeQuery(array(':idCateg' => $id));
+            $content = BDD::getInstance()->executeQuery(array(':idCateg' => $key));
             
             $this->mIdContenu = $content['ID_contenu'];
             $this->mContenu = $content['contenu'];
