@@ -20,7 +20,7 @@
     <?php
     @session_start();
     
-    global $trad;
+    global $trad, $url;
      $url = strtolower($_GET["key"]); 
      $lang = strtolower($_GET["lang"]); 
      
@@ -39,7 +39,6 @@
     require_once ("model/Photo.php"); 
     require_once("model/Categorie.php");
     require_once("model/BDD.php");   
-    
 
     require_once("fonctions.php");
 
@@ -70,10 +69,18 @@
         case "contact" :
             include("vues/contact.php");
             break;
-        case "activite" :
-           
+        
+        case "activites_locales":
+        case "activites_militantes": 
+            load($url);
+            
+            include("vues/activite.php");
+            break;        
+        case "activites" :
+            
             include("vues/activite.php");
             break;
+
         case "traductions" :
             include("vues/traductions.php");
             break;
