@@ -8,10 +8,6 @@
     
     
      <?php foreach ($categories as $categ) {
-
-       
-               
-         
          
     include("categorieView.php");
 

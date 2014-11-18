@@ -49,13 +49,35 @@ switch ($action) {
                 echo -1;
                 return;
             }
+            
+             if(isset($_SESSION["displaykey"]))
+            {
+
+                $displayKey = $_SESSION["displaykey"]=="true";
+            }
+            else
+            {
+                $displayKey = false;
+            }
+            
+            
             $trad = simplexml_load_file("../../lang/lang_".$currentLang.".xml");
             $textReturn = "";
             $ok = false;
             foreach($trad as $categories){
                         foreach($categories as $text){
                             if($text["key"]==$key)
-                            {  $textReturn= (string)$text;
+                            {  
+                                
+                                if($displayKey)
+                                {
+                                    $textReturn= (string)$key;
+                                }
+                                else
+                                {
+                                    $textReturn= (string)$text;
+                                }
+                                
                                 $ok = true;
                                 
                             }

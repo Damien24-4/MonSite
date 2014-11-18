@@ -35,11 +35,24 @@ function getTrad($key)
 {
     global $trad;
     
+     if(isset($_SESSION["displaykey"]))
+   {
+      
+       $displayKey = $_SESSION["displaykey"]=="true";
+   }
+   else
+   {
+       $displayKey = false;
+   }
     
     foreach($trad as $categories){
                 foreach($categories as $text){
                     if($text["key"]==$key)
+                    {
+                        if($displayKey)
+                            return $key;
                         return $text;
+                    }
                 }
                 
                 

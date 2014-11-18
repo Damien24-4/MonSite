@@ -2,6 +2,19 @@
   
    <?php
    $trads = getAllTraductions();
+   
+   if(isset($_SESSION["displaykey"]))
+   {
+      
+       $displayKey = $_SESSION["displaykey"]=="true";
+   }
+   else
+   {
+       $displayKey = false;
+   }
+               
+  
+   
    ?>
    
     
@@ -38,10 +51,15 @@
                    }
                }
    
-   
+       
  
    
    ?>
+                         
+        <div id="displayTradkey">
+            <span><?php echo gettext("displayTradKey"); ?></span>
+            <input type="checkbox" name="displaykey" <?php if($displayKey){echo "checked";} ?> onchange="updateSessionVar(this)" >
+        </div>
            
            
           

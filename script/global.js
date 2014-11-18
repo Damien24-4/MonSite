@@ -588,4 +588,37 @@ function GetText(key)
 }
 
 
+function updateSessionVar(elt)
+{
+    
+    
+    
+    var element = $(elt);
+    var key = element.attr("name");
+    var value = element.is(":checked");
+    
+    $.ajax({
+                url: "../metier/globalAjax.php",
+                dataType: 'text',
+                data: {key : key,value : value ,action : "updateSessionVar"} ,                         
+                type: 'post',
+                success: function(data){
+                    
+                    alert(data);
+                  
+                    var result = JSON.parse(data);
+                    if(result["ok"])
+                    {
+                       //text =  result["text"];
+                    }
+                    else
+                         alert(result["error"]); 
+                  
+                }
+     });
+    
+    
+}
+
+
 
