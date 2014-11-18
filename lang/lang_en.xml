@@ -18,6 +18,6 @@
         <text key="previous">Previous</text>
         <text key="next">Next</text>
         <text key="search">Search</text>
-
+        <text key="displayTradKey">Display traduction keys</text>
     </categories>
 </root>

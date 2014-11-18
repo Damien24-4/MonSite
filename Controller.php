@@ -64,7 +64,6 @@
             break;
         case "galerie" :
             $categories = Categorie::getAllCategorie();
-            
             include("vues/galerie.php");
             break;
         case "contact" :
