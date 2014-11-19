@@ -20,14 +20,19 @@
     <?php
     @session_start();
         
-    global $trad, $url;
-     $url = strtolower($_GET["key"]); 
-     $lang = strtolower($_GET["lang"]); 
-     
-   
-     
-     
-     $_SESSION["lang"]= $lang;
+    global $trad, $url, $paramUrl;
+    $paramUrl = array();
+    
+    foreach($_GET as &$value)
+     $value = strtolower($value);
+         
+    $url = $_GET["key"]; 
+    $lang = $_GET["lang"];
+    
+    if(sizeof($_GET) > 0)
+        $paramUrl = array_slice($_GET, 2);
+
+    $_SESSION["lang"]= $lang;
   
     
     $trad = simplexml_load_file("lang/lang_".$lang.".xml");
@@ -38,9 +43,9 @@
     spl_autoload_register('autoloadMetier');
 
     require_once ("lang/lang_fr.php");
-    require_once ("model/Photo.php"); 
-    require_once("model/Categorie.php");
-    require_once("model/BDD.php");   
+//    require_once ("model/Photo.php"); 
+//    require_once("model/Categorie.php");
+//    require_once("model/BDD.php");   
 
 
 
@@ -79,9 +84,9 @@
             break;        
         case "activites" :
             
-            $contnus = array('locales' => array(), 'militantes' => array());
-            $contnus['locales'] = Contenu::loadByCateg('activites_locales');
-            $contnus['militantes'] = Contenu::loadByCateg('activites_militantes');
+            $contenus = array('locales' => array(), 'militantes' => array());
+            $contenus['locales'] = Contenu::loadByCateg('activites_locales');
+            $contenus['militantes'] = Contenu::loadByCateg('activites_militantes');
             
             include("vues/activite.php");
             break;

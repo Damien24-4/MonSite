@@ -3,22 +3,22 @@
     class Categorie
     {
         private $mIdCategorie = null;
-	private $mKey;
+	private $mCategorieKey;
 //	public $photoss = array();
                 
                 
-        static function get($id)
+        static function getByKey($key)
         {
-            $query = "SELECT * FROM categorie where ID_categorie = '".$id."'";
+            $query = "SELECT * FROM categorie where categorie_key=:key";
             BDD::getInstance()->prepareQuery($query);
-
-            $categs = BDD::getInstance()->executeQuery();
-
+           
+            $categs = BDD::getInstance()->executeQuery(array(':key' => $key));
+//            echo $key.'<pre>';print_r($categs);echo '</pre>';
             $categ = $categs[0];
                     
             $temp = new Categorie();
             $temp->setIdCategorie($categ["ID_categorie"]);
-            $temp->setKey($categ["key"]);
+            $temp->setCategorieKey($categ["categorie_key"]);
             //$temp->photos = Photo::getAllPhotosByIdCategorie($categ["ID_categorie"]);
                     
             return $temp;
@@ -65,12 +65,12 @@
         
         public function getKey()
         {
-            return $this->mKey;
+            return $this->mCategorieKey;
         }
         
-        public function setKey($key)
+        public function setCategorieKey($key)
         {
-            $this->mKey = $key;
+            $this->mCategorieKey = $key;
         }
     }
 

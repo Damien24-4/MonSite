@@ -15,16 +15,21 @@
         {
             $contenu = new Contenu();
             
-            $contenu->setCategorie(Categorie::get($key));
+            $contenu->setCategorie(Categorie::getByKey($key));
                     
             $query = 'SELECT co.ID_contenu, co.contenu, co.date FROM categorie_contenu cc, contenu co WHERE cc.ID_catgorie=:idCateg AND co.ID_contenu = cc.ID_contenu';
             BDD::getInstance()->prepareQuery($query);
-            echo 'ok';
             $content = BDD::getInstance()->executeQuery(array(':idCateg' => $key));
-            echo '<pre>';print_r($content);echo '</pre>';
-            $contenu->setIdContenu($content['ID_contenu']);
-            $contenu->setContenu($content['contenu']);
-            $contenu->setDate(new DateTime($content['date']));
+            
+            if(sizeof($content) > 0)
+            {
+                echo '<pre>';print_r($content);echo '</pre>';
+                $contenu->setIdContenu($content['ID_contenu']);
+                $contenu->setContenu($content['contenu']);
+                $contenu->setDate(new DateTime($content['date']));
+            }
+            
+            return $content;
         }
         
         public function save()

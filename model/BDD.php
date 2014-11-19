@@ -55,8 +55,11 @@
                     {
                        $paramSecure[$key] = $this->mConnection->quote($value);
                     }
-                    
-                    $res = $this->mQuery->execute($paramSecure);
+//                                echo '<pre>';
+//                                print_r($param);
+//                                print_r($paramSecure);
+//                                echo '</pre>';
+                    $res = $this->mQuery->execute($param);
                         
                     $chaine = explode(" ",$this->mQuery->queryString);
                         
