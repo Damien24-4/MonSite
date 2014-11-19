@@ -94,3 +94,15 @@ function getAllTraductions()
     
 }
 
+function autoloadModel($classname) 
+{
+    $filename = './model/'. $classname .".php";
+    require_once($filename);
+}
+
+function autoloadMetier($classname) 
+{
+    $filename = './metier/'. $classname .".php";
+    require_once($filename);
+}
+

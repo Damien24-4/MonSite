@@ -49,37 +49,30 @@
 		}
 		
 		public function executeQuery($param = array())
-		{
+		{                   
+                    $paramSecure = array();
+                    foreach($param as $key=>$value)
+                    {
+                       $paramSecure[$key] = $this->mConnection->quote($value);
+                    }
                     
-                       
-                    
-			$paramSecure = array();
-			foreach($param as $key=>$value)
-			{
-				$paramSecure[$key] = PDO::quote($value);
-			}
-			$res = $this->mQuery->execute($paramSecure);
+                    $res = $this->mQuery->execute($paramSecure);
                         
-                        $chaine = explode(" ",$this->mQuery->queryString);
+                    $chaine = explode(" ",$this->mQuery->queryString);
                         
                         
-                        switch ($chaine[0])
-                        {
-                            case "SELECT":
-                                return $this->mQuery->fetchAll();
-                            case "INSERT":
-                               return $this->mConnection->lastInsertId();
-                            case "UPDATE":
-                            case "DELETE" : 
-                                return $res;
-                            default :
-                                return 0;
-                                
-                            
-                        }
-                       
-		
-			
+                    switch ($chaine[0])
+                    {
+                        case "SELECT":
+                            return $this->mQuery->fetchAll();
+                        case "INSERT":
+                            return $this->mConnection->lastInsertId();
+                        case "UPDATE":
+                        case "DELETE" : 
+                            return $res;
+                        default :
+                            return 0;    
+                    }
 		}
 		
 	}

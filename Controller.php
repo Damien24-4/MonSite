@@ -19,7 +19,7 @@
         
     <?php
     @session_start();
-    
+        
     global $trad, $url;
      $url = strtolower($_GET["key"]); 
      $lang = strtolower($_GET["lang"]); 
@@ -32,15 +32,17 @@
     
     $trad = simplexml_load_file("lang/lang_".$lang.".xml");
 
+    require_once("fonctions.php");
     
-   
+    spl_autoload_register('autoloadModel');
+    spl_autoload_register('autoloadMetier');
 
     require_once ("lang/lang_fr.php");
     require_once ("model/Photo.php"); 
     require_once("model/Categorie.php");
     require_once("model/BDD.php");   
 
-    require_once("fonctions.php");
+
 
 
  
@@ -76,6 +78,10 @@
             include("vues/activite.php");
             break;        
         case "activites" :
+            
+            $contnus = array('locales' => array(), 'militantes' => array());
+            $contnus['locales'] = Contenu::loadByCateg('activites_locales');
+            $contnus['militantes'] = Contenu::loadByCateg('activites_militantes');
             
             include("vues/activite.php");
             break;
