@@ -5,7 +5,8 @@
         private $mIdContenu;
         private $mContenu;
         private $mCategorie;
-        private $mDate;
+        private $mDateAjout;
+        private $mDateModif;
 
         public function __construct() 
         {
@@ -17,16 +18,17 @@
             
             $contenu->setCategorie(Categorie::getByKey($key));
                     
-            $query = 'SELECT co.ID_contenu, co.contenu, co.date FROM categorie_contenu cc, contenu co WHERE cc.ID_catgorie=:idCateg AND co.ID_contenu = cc.ID_contenu';
+            $query = 'SELECT co.ID_contenu, co.contenu, co.dateAjout, co.dateModif FROM categorie_contenu cc, contenu co WHERE cc.ID_catgorie=:idCateg AND co.ID_contenu = cc.ID_contenu';
             BDD::getInstance()->prepareQuery($query);
             $content = BDD::getInstance()->executeQuery(array(':idCateg' => $key));
             
             if(sizeof($content) > 0)
             {
-                echo '<pre>';print_r($content);echo '</pre>';
+                //echo '<pre>';print_r($content);echo '</pre>';
                 $contenu->setIdContenu($content['ID_contenu']);
                 $contenu->setContenu($content['contenu']);
-                $contenu->setDate(new DateTime($content['date']));
+                $contenu->setDateAjout(new DateTime($content['dateAjout']));
+                $contenu->setDateModif(new DateTime($content['dateModif']));
             }
             
             return $content;
@@ -34,7 +36,9 @@
         
         public function save()
         {
-            
+            $query = "INSERT INTO contenu(contenu) VALUES(:contenu)";
+            BDD::getInstance()->prepareQuery($query);
+            BDD::getInstance()->executeQuery(array(':contenu' => $this->mContenu));
         }
 
         public function getIdContenu()
@@ -67,14 +71,24 @@
             $this->mCategorie = $categorie;
         }
         
-        public function getDate()
+        public function getDateAjout()
         {
-            return $this->mDate;
+            return $this->mDateAjout;
         }
         
-        public function setDate($date)
+        public function setDateAjout($date)
         {
-            $this->mDate = $date;
+            $this->mDateAjout = $date;
+        }
+        
+        public function getDateModif()
+        {
+            return $this->mDateModif;
+        }
+        
+        public function setDateModif($date)
+        {
+            $this->mDateModif = $date;
         }
     }
 ?>
