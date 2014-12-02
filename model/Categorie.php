@@ -21,8 +21,7 @@
             $temp->setCategorieKey($categ["categorie_key"]);
             //$temp->photos = Photo::getAllPhotosByIdCategorie($categ["ID_categorie"]);
                     
-            return $temp;
-                    
+            return $temp;             
         }
                 
                 

@@ -1,7 +1,8 @@
+var editor = null;
 
 $(document).ready(function()
 {
-    
+   initGlobalVar();
    resizeContent();
    resize(resizeContent);
    initGallerie();
@@ -10,6 +11,31 @@ $(document).ready(function()
 
     
 });
+
+function initGlobalVar()
+{
+//    if(getSessionVar("admin"))
+//    {
+//       
+//    }
+}
+
+function getSessionVar(key)
+{
+    $.ajax(
+    {
+        url: "../metier/globalAjax.php",
+        dataType: 'text',
+        data: {key : key , action : "getSessionVar"},                         
+        type: 'post',
+        async : false,
+        success: function(data)
+        {
+            var retour = JSON.parse(data);
+            return retour ["value"];
+        }
+     });
+}
 
 function test()
 {
@@ -174,11 +200,57 @@ function addPhoto(idCateg)
  });
 }
 
+function getVar()
+{
+    $.ajax({
+   type: "POST",
+   url: file,
+   data: {
+       id : idElt
+   },
+   success: function(msg){
+     
+     $('#'+retour).append(msg);
+     if(typeof(callBack) === 'undefined')
+        callBack();
+   }
+ });
+}
+
+function getForm(file, retour, idElt, callBack)
+{
+   $.ajax({
+   type: "POST",
+   url: file,
+   data: {
+       id : idElt
+   },
+   success: function(msg){
+     
+     $('#'+retour).append(msg);
+     if(typeof(callBack) !== 'undefined')
+        callBack();
+   }
+ });
+}
+
+function getFormContenu(file, retour, idElt)
+{
+
+    getForm(file, retour, idElt, function()
+    {
+        initCKEditor('contenu');
+    });
+    
+}
+
+function initCKEditor(id)
+{
+   editor = CKEDITOR.replace(id);
+}
+
 function addPhotoValid()
 {
-    
-   
-
     error = false;
     var bloc = $("#managePhotoForm");
     
@@ -590,9 +662,6 @@ function GetText(key)
 
 function updateSessionVar(elt)
 {
-    
-    
-    
     var element = $(elt);
     var key = element.attr("name");
     var value = element.is(":checked");
@@ -603,22 +672,45 @@ function updateSessionVar(elt)
                 data: {key : key,value : value ,action : "updateSessionVar"} ,                         
                 type: 'post',
                 success: function(data){
-                    
-                    alert(data);
-                  
-                    var result = JSON.parse(data);
-                    if(result["ok"])
-                    {
+    
+                var result = JSON.parse(data);
+                if(result["ok"])
+                {
                        //text =  result["text"];
-                    }
-                    else
-                         alert(result["error"]); 
-                  
+                }
+                else
+                    alert(result["error"]);        
                 }
      });
     
     
 }
 
-
+function addContenu()
+{
+    var bloc = $('#formContenu');
+//    var contenu = bloc.find('#contenu').val();
+    var contenu = editor.getData();
+                    alert(contenu);
+    $.ajax(
+    {   
+        url: "../metier/traitementFormContenu.php",
+        dataType: 'text',
+        data: {'contenu' : contenu, action : "add"},                         
+        type: 'post',
+        success: 
+            function(data)
+            {                  
+                var result = JSON.parse(data);
+                
+                if(result["ok"])
+                {
+                    //text =  result["text"];
+                }
+                else
+                    alert(result["error"]); 
+                  
+            }
+     });
+}
 

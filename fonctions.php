@@ -105,4 +105,3 @@ function autoloadMetier($classname)
     $filename = './metier/'. $classname .".php";
     require_once($filename);
 }
-

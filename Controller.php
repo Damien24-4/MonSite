@@ -1,5 +1,4 @@
-
-
+<!--<!DOCTYPE html>-->
 <html>
     <head>
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
@@ -32,9 +31,8 @@
     if(sizeof($_GET) > 0)
         $paramUrl = array_slice($_GET, 2);
 
-    $_SESSION["lang"]= $lang;
-  
-    
+    $_SESSION["lang"] = $lang;
+
     $trad = simplexml_load_file("lang/lang_".$lang.".xml");
 
     require_once("fonctions.php");
@@ -47,19 +45,9 @@
 //    require_once("model/Categorie.php");
 //    require_once("model/BDD.php");   
 
-
-
-
- 
-  
-
     include("vues/banner.php");
     include("vues/menu.php");
-    
-   
-   
-    
-    
+
     switch($url)
     {
         case "accueil" :

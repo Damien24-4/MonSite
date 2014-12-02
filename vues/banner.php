@@ -20,9 +20,9 @@
                     
                     ?>
                     
-                     <a href=" <?php echo  $destinationUrl ?>">
+<!--                     <a href=" <?php echo  $destinationUrl ?>">
                     <img src="<?php echo  "../images/flag_".$country.".png" ?>"  >
-                     </a>
+                     </a>-->
                     
                       <?php
                     

@@ -19,6 +19,6 @@
         <text key="next">Suivant</text>
         <text key="search">Rechercher</text>
         <text key="displayTradKey">Afficher les clés de traduction</text>
-        <text key="formContenu">Contenu</text>
+        <text key="contenu">Contenu</text>
     </categories>
 </root>

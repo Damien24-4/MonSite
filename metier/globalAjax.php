@@ -25,7 +25,15 @@ switch ($action) {
         echo json_encode(array('ok' => $_SESSION[$key]));
         break;
         
-    return;
+    case 'getSessionVar':
+        if(array_key_exists($key, $_SESSION))
+            echo json_encode(array('value' => $_SESSION[$key]));
+        else
+            echo json_encode(array('value' => false));
+        break;
+
+    default:
+     return;
 
 }
 

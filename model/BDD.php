@@ -50,15 +50,9 @@
 		
 		public function executeQuery($param = array())
 		{                   
-                    $paramSecure = array();
-                    foreach($param as $key=>$value)
-                    {
-                       $paramSecure[$key] = $this->mConnection->quote($value);
-                    }
-//                                echo '<pre>';
-//                                print_r($param);
-//                                print_r($paramSecure);
-//                                echo '</pre>';
+                    foreach($param as &$value)
+                       $value = htmlentities($value);
+
                     $res = $this->mQuery->execute($param);
                         
                     $chaine = explode(" ",$this->mQuery->queryString);
